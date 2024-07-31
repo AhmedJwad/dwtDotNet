@@ -1,4 +1,5 @@
 using dwtDotNet.Data;
+using dwtDotNet.Helper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddDbContext<DataContext>(o =>
 {
     o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddScoped<IFileStorage, FileStorage>();
 var app = builder.Build();
 
 
